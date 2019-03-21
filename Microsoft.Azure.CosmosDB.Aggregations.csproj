@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{90AF4D76-678F-4A10-AFFE-181E01CB40B6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Microsoft.Azure.CosmosDB.Aggregations</RootNamespace>
+    <AssemblyName>Microsoft.Azure.CosmosDB.Aggregations</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Azure.Documents.ChangeFeedProcessor, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Azure.Documents.ChangeFeedProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Documents.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Azure.Documents.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aggregator\AggregationComparison.cs" />
+    <Compile Include="Aggregator\AggregationComparisonCalculator.cs" />
+    <Compile Include="Aggregator\AggregationResult.cs" />
+    <Compile Include="Aggregator\AggregationRule.cs" />
+    <Compile Include="Aggregator\AggregationType.cs" />
+    <Compile Include="Aggregator\BaseAggregator.cs" />
+    <Compile Include="Aggregator\IAggregator.cs" />
+    <Compile Include="Aggregator\MaxAggregator.cs" />
+    <Compile Include="Aggregator\MinAggregator.cs" />
+    <Compile Include="Aggregator\SumAggregator.cs" />
+    <Compile Include="ChangeFeed\ChangeFeedExecutor.cs" />
+    <Compile Include="ChangeFeed\DocumentFeedObserver.cs" />
+    <Compile Include="ChangeFeed\DocumentFeedObserverFactory.cs" />
+    <Compile Include="CosmosDBHelper\CosmosDBHelper.cs" />
+    <Compile Include="DataGenerator\Employee\Constants.cs" />
+    <Compile Include="DataGenerator\Employee\EmployeeSampleDataGenerator.cs" />
+    <Compile Include="DataGenerator\Employee\Employee.cs" />
+    <Compile Include="DataGenerator\Employee\Employer.cs" />
+    <Compile Include="DataGenerator\Employee\EmploymentInfo.cs" />
+    <Compile Include="DataGenerator\IDataGenerator.cs" />
+    <Compile Include="DataGenerator\AggregationRuleGenerator.cs" />
+    <Compile Include="DataGenerator\BaseDataGenerator.cs" />
+    <Compile Include="DataGenerator\Employee\NotablePosition.cs" />
+    <Compile Include="DataGenerator\Employee\Position.cs" />
+    <Compile Include="DataGenerator\Employee\PositionType.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\..\..\..\..\..\NuGetPackages\Microsoft.Azure.DocumentDB.2.2.1\build\Microsoft.Azure.DocumentDB.targets" Condition="Exists('..\..\..\..\..\..\..\NuGetPackages\Microsoft.Azure.DocumentDB.2.2.1\build\Microsoft.Azure.DocumentDB.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\..\..\..\..\NuGetPackages\Microsoft.Azure.DocumentDB.2.2.1\build\Microsoft.Azure.DocumentDB.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\..\NuGetPackages\Microsoft.Azure.DocumentDB.2.2.1\build\Microsoft.Azure.DocumentDB.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
