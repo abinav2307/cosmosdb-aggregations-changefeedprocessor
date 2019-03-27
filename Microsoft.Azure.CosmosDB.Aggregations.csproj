@@ -37,16 +37,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Azure.Documents.ChangeFeedProcessor, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Azure.Documents.ChangeFeedProcessor.dll</HintPath>
+      <HintPath>packages\Microsoft.Azure.DocumentDB.ChangeFeedProcessor.2.2.5\lib\net45\Microsoft.Azure.Documents.ChangeFeedProcessor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.Documents.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Azure.Documents.Client.dll</HintPath>
+      <HintPath>packages\Microsoft.Azure.DocumentDB.2.2.1\lib\net45\Microsoft.Azure.Documents.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -65,18 +65,18 @@
     <Compile Include="Aggregator\MaxAggregator.cs" />
     <Compile Include="Aggregator\MinAggregator.cs" />
     <Compile Include="Aggregator\SumAggregator.cs" />
+	<Compile Include="CosmosDBHelper\CosmosDBHelper.cs" />
     <Compile Include="ChangeFeed\ChangeFeedExecutor.cs" />
     <Compile Include="ChangeFeed\DocumentFeedObserver.cs" />
     <Compile Include="ChangeFeed\DocumentFeedObserverFactory.cs" />
-    <Compile Include="CosmosDBHelper\CosmosDBHelper.cs" />
     <Compile Include="DataGenerator\Employee\Constants.cs" />
     <Compile Include="DataGenerator\Employee\EmployeeSampleDataGenerator.cs" />
     <Compile Include="DataGenerator\Employee\Employee.cs" />
     <Compile Include="DataGenerator\Employee\Employer.cs" />
     <Compile Include="DataGenerator\Employee\EmploymentInfo.cs" />
     <Compile Include="DataGenerator\IDataGenerator.cs" />
-    <Compile Include="DataGenerator\AggregationRuleGenerator.cs" />
-    <Compile Include="DataGenerator\BaseDataGenerator.cs" />
+	<Compile Include="DataGenerator\AggregationRuleGenerator.cs" />
+	<Compile Include="DataGenerator\BaseDataGenerator.cs" />
     <Compile Include="DataGenerator\Employee\NotablePosition.cs" />
     <Compile Include="DataGenerator\Employee\Position.cs" />
     <Compile Include="DataGenerator\Employee\PositionType.cs" />
