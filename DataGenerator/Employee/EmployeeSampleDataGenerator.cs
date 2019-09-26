@@ -203,8 +203,7 @@ namespace Microsoft.Azure.CosmosDB.Aggregations.DataGenerator
             employee.CurrentEmployerTicker = "MSFT";
 
             employee.PartitionKey = employee.FirstName;
-            //employee.PartitionKey = string.Concat(employee.FirstName, " ", employee.LastName);
-
+            
             employee.EmploymentInfo = new EmploymentInfo();
             employee.EmploymentInfo.Employers = GenerateSampleEmployerData(NumEmployers, NumNotablePositions);
             employee.EmploymentInfo.Positions = GenerateSamplePositions(NumPositions);

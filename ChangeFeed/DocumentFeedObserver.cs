@@ -251,21 +251,17 @@ namespace Microsoft.Azure.CosmosDB.Aggregations.ChangeFeed
                     Console.WriteLine("5. Size of aggregation results = {0}", aggregationResults[eachAggregationKey].Count);
                     Console.WriteLine("5.1 List of aggregation results for key: {0} = {1}", eachAggregationKey, aggregationResults[eachAggregationKey].Count);
                 }
+
+                Console.WriteLine("5.4 Entering here!");
+                if (aggregationResults.ContainsKey(eachAggregationKey))
+                {
+                    this.WriteAggregatedDataToCosmosDB(
+                    eachAggregationKey,
+                    aggregationResults[eachAggregationKey]).Wait();
+                }
             });
 
-            // Write aggregated data to materialized view in another Cosmos DB collection
-            foreach (string eachAIModelAndExtractionId in aggregationBuckets.Keys)
-            {
-                Console.WriteLine("5.4 Entering here!");
-                if(aggregationResults.ContainsKey(eachAIModelAndExtractionId))
-                {
-                    await this.WriteAggregatedDataToCosmosDB(
-                    eachAIModelAndExtractionId,
-                    aggregationResults[eachAIModelAndExtractionId]);
-                }
-
-                Console.WriteLine("Done!");
-            }
+            Console.WriteLine("Done!");
         }
 
         /// <summary>
